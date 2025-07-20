@@ -12,9 +12,7 @@
       <div class="logo">Eat&Drink</div>
     </nav>
     <div class="banner">
-      @if(auth()->user()->statut == "pending") 
-        <h3>Veuillez patientez votre demande est en cours de traitement</h3>
-      @else
+      
       <h2>Devenir Exposant</h2>
       <h3>Rejoignez l'événement Eat&Drink et présentez vos créations culinaires</h3>
     </div>
@@ -75,6 +73,6 @@
       </form>
     </div>
   </section>
-  @endif
+ 
 </body>
 </html>

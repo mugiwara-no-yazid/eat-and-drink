@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('proprietaire_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
+        
     }
 
     /**

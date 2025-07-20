@@ -2,9 +2,13 @@
 
 use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProduitsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\StandController;
+use App\Models\Stand;
 use Illuminate\Support\Facades\Route;
+
+use function Laravel\Prompts\select;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,4 +34,16 @@ Route::controller(LoginController::class)->group(function()
     Route::post('/login','connecter');
 });
 
-Route::get('/dashboard',[DasboardController::class,'dash'])->name("dashboard");
+Route::controller(DasboardController::class)->group( function()
+{
+    Route::get('/dashboard','dash')->name("dashboard");
+    Route::get('/dashboard-stand/{id}',"detailstand")->name("detailstand");
+
+});
+
+Route::controller(ProduitsController::class)->group( function()
+{
+    Route::get('/dashboard-stand/{id}/addproduit',"formaddproduit")->name("addproduuit");
+    Route::post('/dashboard-stand/{id}/addproduit',"addproduit");
+
+});
