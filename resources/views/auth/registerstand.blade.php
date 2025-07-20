@@ -5,21 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eat&Drink - Inscription Exposant</title>
   @vite('resources/css/stylelogin.css')
+  <style>
+    .dash{
+      padding: 10px;
+    }
+  </style>
 </head>
 <body>
   <header class="header">
     <nav class="nav">
       <div class="logo">Eat&Drink</div>
+      <div class="nav-buttons">
+        <a  href="{{route('dashboard')}}"><button>Dashboard</button></a>
+      </div>
+     
     </nav>
     <div class="banner">
-      @if(auth()->user()->statut == "pending") 
-        <h3>Veuillez patientez votre demande est en cours de traitement</h3>
-      @else
+      
       <h2>Devenir Exposant</h2>
       <h3>Rejoignez l'événement Eat&Drink et présentez vos créations culinaires</h3>
+
     </div>
   </header>
   <section class="form-section">
+
     <div class="form-container">
       <h3>Inscription Exposant</h3>
       <p>Remplissez ce formulaire pour demander votre participation à l'événement</p>
@@ -75,6 +84,6 @@
       </form>
     </div>
   </section>
-  @endif
+ 
 </body>
 </html>

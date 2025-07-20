@@ -22,12 +22,12 @@ class LoginController extends Controller
             {Auth::login($user);
             return redirect()->route("dashboard");}
         else 
-            return redirect()->route("connexion");
+            return redirect()->route("login");
     }
 
     public function deconnexion():RedirectResponse
     {
         Auth::logout();
-        return redirect()->route("connexion");;
+        return redirect()->route("login");;
     }
 }
