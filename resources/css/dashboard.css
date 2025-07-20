@@ -229,7 +229,11 @@
             justify-content: center;
             gap: 4px;
         }
-
+        .btn-modify:hover
+        {
+            background-color: #28a746a9;
+            color: black;
+        }
         .btn-delete {
             background: #dc3545;
             border: none;

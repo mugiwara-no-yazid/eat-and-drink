@@ -13,15 +13,12 @@
   <header class="header">
     <nav class="nav">
       <div class="logo">Eat&Drink</div>
-      <div class="nav-buttons">
-          <a  href="{{route('dashboard')}}"><button>Dashboard</button></a>
-       @auth
-         <a href="{{route('deconnexion')}}"><button>Se deconnecter</button></a>
-      @endauth
-      </div>
+      
     </nav>
     <div class="banner">
-       @yield("banner")
+        <h1>
+          Votre demande est en cours de traitement
+        </h1>
     </div>
   </header>
 

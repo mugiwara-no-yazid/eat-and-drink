@@ -33,7 +33,7 @@ class DasboardController extends Controller
         else
         {
             $stands =Stand::all()->where("proprietaire_id",auth()->user()->id);   
-            return redirect()->route('dashboard',["stands"=>$stands])->with('error', "Ce stand n'existe pas.");
+            return redirect()->route('dashboard',["stands"=>$stands])->with('error', "Ce stand ne vous appartient pas.");
         }
             
 

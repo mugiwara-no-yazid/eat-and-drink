@@ -15,7 +15,7 @@
          <a href="{{route('deconnexion')}}"><button>Se deconnecter</button></a>
       @endauth
        @guest
-          <a href="{{route('connexion')}}"><button>Se connecter</button></a>
+          <a href="{{route('login')}}"><button>Se connecter</button></a>
           <a href="{{route('inscription')}}"><button class="active">S'inscrire</button></a>
         @endguest </div>
     </nav>

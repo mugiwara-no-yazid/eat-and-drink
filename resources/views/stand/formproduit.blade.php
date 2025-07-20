@@ -53,11 +53,19 @@
      @if(session('sucess'))
       <div style="background-color: #5aeb17ff; color: white; padding: 15px; border-radius: 5px; margin: 10px 0;">{{ session('sucess') }}</div>
       @endif
-     <form action="" method="post" id="product-form" enctype="multipart/form-data">
+     
+    <form 
+    method="POST" 
+    enctype="multipart/form-data" 
+    id="product-form"
+    action="{{ isset($produit) 
+        ? route('modifieproduit', ['id' => $stand->id, 'produit' => $produit->id]) 
+        : route('addproduit', ['id' => $stand->id]) 
+    }}">
         @csrf
                     <div class="form-group">
                         <label for="nom">Nom du produit *</label>
-                        <input type="text" id="nom" name="nom" value="{{old('nom') }}" placeholder="Ex. Pain de campagne" required>
+                        <input type="text" id="nom" name="nom" value="{{old('nom',$produit->nom ?? '') }}" placeholder="Ex. Pain de campagne" required>
                         <div class="error">
                             @error('name')
                                 {{$message}}
@@ -67,7 +75,7 @@
                     
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea id="description" name ="description"  placeholder="Décrivez votre produit..." rows="4">{{old('description') }}</textarea>
+                        <textarea id="description" name ="description"  placeholder="Décrivez votre produit..." rows="4">{{old('description',$produit->description ?? '') }}</textarea>
                         <div class="error">
                             @error('description')
                                 {{$message}}
@@ -77,7 +85,7 @@
                     
                     <div class="form-group">
                         <label for="prix">Prix *</label>
-                        <input type="number" id="prix" name="prix" value="{{old('prix') }}" placeholder="0" min="0" required>
+                        <input type="number" id="prix" name="prix" value="{{old('prix',$produit->prix ?? '') }}" placeholder="0" min="0" required>
                         <div class="error">
                             @error('prix')
                                 {{$message}}
@@ -87,7 +95,7 @@
                     
                     <div class="form-group">
                         <label for="image_url">Image du produit</label>
-                        <input type="file" name="image_url" id="image_url" accept="image/*" required>
+                        <input type="file" name="image_url" id="image_url" accept="image/*">
                     <div class="error">
                             @error('image_url')
                                 {{$message}}
@@ -96,7 +104,13 @@
                     </div>
                     
                     <div class="form-actions">
-                        <button type="submit" class="submit-btn">Ajouter</button>
+                        <button type="submit" class="submit-btn">
+                          @if(isset($produit))
+                               Modifier
+                            @else
+                                Ajouter
+                            @endif   
+                        </button>
                         <a href="{{route('detailstand',$stand->id)}}"><button type="button" class="submit-btn danger">Annuler</button></a>
                     </div>
                 </form>
