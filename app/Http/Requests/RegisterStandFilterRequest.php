@@ -25,7 +25,7 @@ class RegisterStandFilterRequest extends FormRequest
            'name' => ['required', 'string', 'max:255'],
             'category' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'logo' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ];
     }
 }

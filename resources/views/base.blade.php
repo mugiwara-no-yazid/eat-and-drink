@@ -13,10 +13,12 @@
   <header class="header">
     <nav class="nav">
       <div class="logo">Eat&Drink</div>
+      <div class="stand"><a href="{{route('index')}}"><button>Stands</button></a></div>
       <div class="nav-buttons">
           <a  href="{{route('dashboard')}}"><button>Dashboard</button></a>
        @auth
          <a href="{{route('deconnexion')}}"><button>Se deconnecter</button></a>
+          <a href="{{route('inscriptionStand')}}"><button>Ajouter un nouveau Stand</button></a>
       @endauth
       </div>
     </nav>
