@@ -3,7 +3,9 @@
 @section('content')
 <h2 class="title">Stands Approuvés</h2>
 
-<?php $approved=[['stand_name' => 'La boulangerie', 'logo'=>0]] ?>
+    @if(!$approved || count($approved) === 0)
+        <p>Aucune demande de stand approuvée.</p>
+    @endif
 
    @foreach($approved as $elem)
         

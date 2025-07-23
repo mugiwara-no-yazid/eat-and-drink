@@ -72,7 +72,11 @@ Route::controller(AdminRouter::class)->prefix('admin/home')->group(
             return view('admin.includes.waitingList')->with('waiting', $waiting);
         })->name('waitingList');
 
-        Route::view('/standApproved', 'admin.includes.commands')->name('standApproved');
+        Route::get('/standApproved', function(){
+            $approved=Stand::where('status', '=', 'accepted')->with('products')->get();
+            return view('admin.includes.approvedStand')->with('approved', $approved);
+        })->name('standApproved');
+
         Route::view('/commandes', 'admin.includes.commands' )->name('commands');
     }
 )->middleware(hasRoleAdmin::class);

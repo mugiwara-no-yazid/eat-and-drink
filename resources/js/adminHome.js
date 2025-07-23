@@ -16,12 +16,7 @@ function apiReq(url, method, data){
         console.error('Erreur:', error);
     });
 }
-function handleNav(){
-    const waitingList=document.querySelector('.waiting-list')
-    const approvedStands=document.querySelector('.approved-stands');
-    const commands = document.querySelector('.commands');
 
-    waitingList.onclick=(e)=>{
-
-    }
+function handleWaitingList(){
+    const List=document.querySelector('waitingList');
 }
