@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Models\Stand;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +23,11 @@ class AdminLogin extends Controller
                 abort(403, "Accès interdit");
             }
 
-            return view('admin.includes.waitingList');
+            $stats=[
+                'accepted'=>count(Stand::where('status','=', 'accepted')->get()),
+                'pending'=>count(Stand::where('status','=', 'pending')->get())
+            ];
+            return view('admin.includes.waitingList')->with('stats',$stats);
         }
     }
 }

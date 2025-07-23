@@ -9,6 +9,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\StandController;
 use App\Http\Middleware\CheckIfActivated;
 use App\Http\Middleware\hasRoleAdmin;
+use App\Models\Commande;
 use App\Models\Produit;
 use App\Models\Stand;
 use App\Models\User;
@@ -69,12 +70,21 @@ Route::controller(AdminRouter::class)->prefix('admin/home')->group(
     function(){
         Route::get('/waitingList', function(){
             $waiting=Stand::where('status', '=', 'pending')->with('user')->get();
-            return view('admin.includes.waitingList')->with('waiting', $waiting);
+            $stats=[
+                'accepted'=>count(Stand::where('status','=', 'accepted')->get()),
+                'pending'=>count(Stand::where('status','=', 'pending')->get()),
+                'commands'=>count(Commande::all())
+            ];
+            return view('admin.includes.waitingList')->with('waiting', $waiting)->with('stats', $stats);
         })->name('waitingList');
 
         Route::get('/standApproved', function(){
             $approved=Stand::where('status', '=', 'accepted')->with('products')->get();
-            return view('admin.includes.approvedStand')->with('approved', $approved);
+            $stats=[
+                'accepted'=>count(Stand::where('status','=', 'accepted')->get()),
+                'pending'=>count(Stand::where('status','=', 'pending')->get())
+            ];
+            return view('admin.includes.approvedStand')->with('approved', $approved)->with('stats', $stats);
         })->name('standApproved');
 
         Route::view('/commandes', 'admin.includes.commands' )->name('commands');

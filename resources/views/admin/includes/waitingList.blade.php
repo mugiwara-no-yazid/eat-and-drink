@@ -28,8 +28,8 @@
                 </div>
 
                 <div class="flex justify-c" style="margin-top: 10px;">
-                    <button class="cursp button approved" style="background: linear-gradient(135deg, hsl(25 95% 60%), hsl(35 85% 65%))"> &check; Approuver </button>
-                    <button class="cursp button rejected" style="background:rgba(220, 39, 36, 0.78);"> &cross; Rejeter </button>
+                    <button class="cursp button approve" style="background: linear-gradient(135deg, hsl(25 95% 60%), hsl(35 85% 65%))"> &check; Approuver </button>
+                    <button class="cursp button reject" style="background:rgba(220, 39, 36, 0.78);"> &cross; Rejeter </button>
                 </div>
             </div>
         @endforeach

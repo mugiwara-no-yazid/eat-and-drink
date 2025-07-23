@@ -25,10 +25,9 @@
             </div>
 
             <div class="stats flex">
-                <div class="card flex"> <i data-lucide="users"></i> <p> Demandes en attente </p> </div>
-                <div class="card flex"> <i data-lucide="store" ></i> <p>Stands approuvés</p></div>
-                <div class="card flex"> <i data-lucide="shopping-cart"></i> <p>Commandes totales</p> </div>
-                <div class="card flex"> <i data-lucide="calendar"></i> <p>Jours restants</p></div>
+                <div class="card flex"> <i data-lucide="users"></i> <p> <strong style="font-size: 2em; color: black;">{{ $stats['pending'] }}</strong> Demandes en attente </p> </div>
+                <div class="card flex"> <i data-lucide="store" ></i> <p> <strong style="font-size: 2em; color: black;"> {{ $stats['accepted'] }} </strong> Stands approuvés</p></div>
+                <div class="card flex"> <i data-lucide="shopping-cart"></i><strong style="font-size: 2em; color: black;">{{ $stats['commands'] }}</strong> <p>Commandes totales</p> </div>
             </div>
 
             <nav class="flex nav2">  

@@ -18,5 +18,19 @@ function apiReq(url, method, data){
 }
 
 function handleWaitingList(){
-    const List=document.querySelector('waitingList');
+    const List=document.querySelectorAll('waitingList');
+    List.array.forEach(element => {
+        const buttons = element.querySelectorAll('button');
+        buttons.forEach(button=>{
+            if(button.hasAttribute('approve')){
+                button.onclick=()=>{
+                    const div=document.createElement('div');
+                    div.innerHTML=`
+                        <p>Voulez vous accepter ce stand?</p>
+                        <button></button>
+                    `
+                }
+            }
+        })
+    });
 }
