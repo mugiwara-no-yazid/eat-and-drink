@@ -41,6 +41,12 @@
                 <a href="#" class="tab"><h1>Commandes</h1></a>
              @if(count($commandes)===0)
                 <h5>Vous n'avez aucune commande</h5>
+            @else
+            <ul>
+            @foreach($commandes as $commande)
+                <li>{{$commande->details_commande}} soumis le {{$commande->date_commande}}</li>
+            @endforeach
+            </ul>
             @endif
             </div>
         </nav>
