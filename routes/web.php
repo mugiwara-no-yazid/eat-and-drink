@@ -35,7 +35,7 @@ Route::controller(LoginController::class)->group(function()
     Route::post('/login','connecter');
 });
 //,CheckIfActivated::class middleware pour rediriger l'utilisateur si son compte est en attente
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth',CheckIfActivated::class])->group(function(){
 
     Route::controller(StandController::class)->group(function()
 {
@@ -107,3 +107,62 @@ $stands =Stand::all();
     $proprietaire = User::findOrFail($stand->proprietaire_id);
     return view("acceuil.produitstand",["stand"=>$stand,"produits"=>$produits,"proprietaire"=>$proprietaire]);
 })->name("voirStand");
+
+Route::get('/addcommande/{id}', function ($id) {
+    request()->validate([
+        'quantity' => 'required|integer|min:1'
+    ]);
+    
+    $quantity = (int) request()->query('quantity');
+    $cart = session()->get('cart', []);
+    
+    $cart[$id] = ($cart[$id]["quantity"] ?? 0) + $quantity;
+    session()->put('cart', $cart);
+    return redirect()->back()->with('success', 'Produit ajouté au panier!');
+})->name('addcommande');
+
+
+Route::get('/panier', function() {
+    $cart = session()->get('cart', []);
+    $products = [];
+    $total = 0;
+
+    foreach ($cart as $productId => $quantity) {
+        $product = Produit::find($productId);
+        
+        if ($product) {
+            $productTotal = $product->prix * $quantity;
+            $total += $productTotal;
+            
+            $products[] = [
+                'id' => $product->id,
+                'nom' => $product->nom,
+                'prix' => $product->prix,
+                'quantite' => $quantity,
+                'total' => $productTotal,
+                'image' => $product->image_url
+            ];
+        }
+    }
+
+    return view('acceuil.panier', [
+        'products' => $products,
+        'total' => $total
+    ]);
+})->name('panier');
+
+
+Route::post('/update-cart/{id}', function($id) {
+    request()->validate(['quantity' => 'required|integer|min:1']);
+    
+    session()->put('cart.'.$id, request('quantity'));
+    
+    return back()->with('success', 'Quantité mise à jour');
+})->name('update-cart');
+
+
+Route::get('/remove-from-cart/{id}', function($id) {
+    session()->forget('cart.'.$id);
+    
+    return back()->with('success', 'Produit retiré du panier');
+})->name('remove-from-cart');
