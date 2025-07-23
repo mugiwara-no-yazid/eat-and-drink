@@ -87,7 +87,10 @@ Route::controller(AdminRouter::class)->prefix('admin/home')->group(
             return view('admin.includes.approvedStand')->with('approved', $approved)->with('stats', $stats);
         })->name('standApproved');
 
-        Route::view('/commandes', 'admin.includes.commands' )->name('commands');
+
+        Route::post('/standAccept/{id}', [StandController::class, 'manageStand'])->name('stand-approve');
+        Route::post('/standReject/{id}', [StandController::class, 'manageStand'])->name('stand-reject');
+
     }
 )->middleware(hasRoleAdmin::class);
 

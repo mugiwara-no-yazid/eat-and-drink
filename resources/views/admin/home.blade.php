@@ -7,6 +7,7 @@
     @vite('resources/css/stylelogin.css')
     @vite('resources/css/admin.css')
     @vite('resources/js/app.js')
+    @vite('resources/js/adminHome.js')
 </head>
 <body class="admin">
     <header>
@@ -33,7 +34,7 @@
             <nav class="flex nav2">  
                     <a class=" text-c block flex box-s" href="{{ route('waitingList')}}"> <i data-lucide="users"></i> Demandes</a>
                     <a class=" text-c flex block" href="{{ route('standApproved')}}" > <i data-lucide="users"></i> Stands approuvés</a>
-                    <a class=" text-c flex block" href="{{ route('commands') }}"> <i data-lucide="users"></i> Commandes</a>
+                    <a class=" text-c flex block" href=""> <i data-lucide="users"></i> Commandes</a>
             </nav>
         </section>
        

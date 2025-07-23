@@ -28,8 +28,16 @@
                 </div>
 
                 <div class="flex justify-c" style="margin-top: 10px;">
-                    <button class="cursp button approve" style="background: linear-gradient(135deg, hsl(25 95% 60%), hsl(35 85% 65%))"> &check; Approuver </button>
-                    <button class="cursp button reject" style="background:rgba(220, 39, 36, 0.78);"> &cross; Rejeter </button>
+                    <form action="{{ route('stand-approve', $elem['id']) }}" method="post" style="width: 50%;">
+                        @csrf
+                        <input type="hidden" name="action", value="accept">
+                        <button type="submit" class="cursp button approve" style="width: 100%; background: linear-gradient(135deg, hsl(25 95% 60%), hsl(35 85% 65%))"> &check; Approuver </button>
+                    </form>
+                    <form action="{{ route('stand-reject', $elem['id']) }}" method="post" style="width: 50%;">
+                        @csrf
+                        <input type="hidden" name="action", value="reject">
+                        <button type="submit" class="cursp button reject" style="width: 100%; background:rgba(220, 39, 36, 0.78);"> &cross; Rejeter </button>
+                    </form>
                 </div>
             </div>
         @endforeach

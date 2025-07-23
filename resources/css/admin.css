@@ -4,6 +4,7 @@
     height: max-content;
     padding: 50px 70px;
     font-family: Roboto, sans-serif;
+    overflow-x: hidden;
 }
 .admin main{
     margin: 80px auto;
@@ -48,6 +49,15 @@
 .column{
     flex-direction: column;
 }
+.modale{
+    position: fixed;
+    height: 100px;
+    width: 300px;
+    top: calc((100vh - 200px)/2);
+    left:calc((100vw - 300px)/2) ;
+    box-shadow: 0 0 10px 0 currentColor;
+}
+
 .nav2 a{
     padding: 2px 2px 5px;
     border-radius: 5px;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterStandFilterRequest;
 use App\Models\Stand;
+use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -35,4 +36,17 @@ class StandController extends Controller
             $stand->save();
         return redirect()->route("dashboard");
     }
+
+    public function manageStand(Request $action, $id){
+        if(!in_array($action->input('action'), ['accept', 'reject'])) throw new Exception('Action inconnue.');
+        if(Auth::user() && Auth::user()->role === 'admin'){
+            Stand::findOrfail($id)->update(['status'=>($action === 'accept' ? 'accepted' : 'rejected')]);
+            $stats=[
+                'accepted'=>count(Stand::where('status','=', 'accepted')->get()),
+                'pending'=>count(Stand::where('status','=', 'pending')->get())
+            ];
+            return view('admin.includes.waitingList')->with('stats',$stats);
+        }
+    }
+
 }
