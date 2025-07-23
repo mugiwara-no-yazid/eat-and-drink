@@ -42,15 +42,14 @@
 }
 </style>
 @section('banner')
-@if(session('success'))
-      <div style="background-color: #5aeb17ff; color: white; padding: 15px; border-radius: 5px; margin: 10px 0;">{{ session('success') }}</div>
-@endif
-@if(session('error'))
-      <div style="background-color: #e41b1bff; color: white; padding: 15px; border-radius: 5px; margin: 10px 0;">{{ session('error') }}</div>
-@endif
+    @if(session('success'))
+        <div style="background-color: #5aeb17ff; color: white; padding: 15px; border-radius: 5px; margin: 10px 0;">{{ session('success') }}</div>
+    @endif
+    @if(session('error'))
+        <div style="background-color: #e41b1bff; color: white; padding: 15px; border-radius: 5px; margin: 10px 0;">{{ session('error') }}</div>
+    @endif
 @endsection
-@section('content')
-@endsection
+
 @section('content')
 <div class="panier-container">
     <h2>Votre Panier</h2>

@@ -281,8 +281,10 @@ input:not(:placeholder-shown) {
       <div class="logo">Eat&Drink</div>
       <div class="stand"><a href="{{route('index')}}"><button>Stands</button></a></div>
       <div class="nav-buttons">
+        
+      <a href="{{route('panier')}}"><button>Voir pannier</button></a>
         @auth
-        <a href="{{route('panier')}}"><button>Voir pannier</button></a>
+        
          <a href="{{route('deconnexion')}}"><button>Se deconnecter</button></a>
       @endauth
        @guest

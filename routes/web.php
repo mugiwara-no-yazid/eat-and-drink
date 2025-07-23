@@ -29,7 +29,7 @@ Route::controller(LoginController::class)->group(function()
     Route::post('/login','connecter');
 });
 //,CheckIfActivated::class middleware pour rediriger l'utilisateur si son compte est en attente
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth',CheckIfActivated::class])->group(function(){
 
     Route::controller(StandController::class)->group(function()
 {
