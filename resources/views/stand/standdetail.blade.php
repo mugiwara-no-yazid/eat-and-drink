@@ -1,9 +1,13 @@
 @extends('base') 
 
 @section('banner')
-
-    
-      <div>
+<style>
+    .presentation{
+        position: relative;
+        bottom: 5vh;
+    }
+</style>
+      <div class="presentation">
         @if(!isset($stand->logo))
         <h1>Gestion du stand {{$stand->name_stand}}</h1>
         @else
@@ -33,7 +37,12 @@
         </div>
 
         <nav class="tab-nav">
-            <a href="#" class="tab">Commandes</a>
+            <div>
+                <a href="#" class="tab"><h1>Commandes</h1></a>
+             @if(count($commandes)===0)
+                <h5>Vous n'avez aucune commande</h5>
+            @endif
+            </div>
         </nav>
 
         <section class="app">
@@ -42,7 +51,10 @@
                 <a href="{{ route('addproduit', ['id' => $stand->id]) }}"><button class="add-product-btn">Ajouter un produit</button></a>
             </div>
             <div class="products-grid">
-
+                
+                @if(count($produits)===0)
+                <h1>Vous n'avez aucun produit en boutique</h1>
+                @endif
                 @foreach ($produits as $produit)
                     <div class="product-card">
                     <img src="{{asset('photos/'.$produit->image_url)}}" alt="{{$produit->nom}}" class="product-image">

@@ -17,6 +17,16 @@
       width: 100vw;
     }
 
+    .stand button{
+      background-color: transparent;
+      border: none;
+      font-size: 25px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .stand button:hover{
+     color: #ff7a00;
+    }
     .header {
       background: linear-gradient(135deg, #ff9a56, #ff7b00);
       color: white;

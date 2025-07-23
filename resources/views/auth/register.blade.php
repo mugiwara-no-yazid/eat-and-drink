@@ -10,6 +10,7 @@
   <header class="header">
     <nav class="nav">
       <div class="logo">Eat&Drink</div>
+      <div class="stand"><a href="{{route('index')}}"><button>Stands</button></a></div>
       <div class="nav-buttons">
       @auth
          <a href="{{route('deconnexion')}}"><button>Se deconnecter</button></a>

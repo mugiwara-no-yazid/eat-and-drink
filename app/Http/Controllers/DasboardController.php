@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commande;
 use App\Models\Produit;
 use App\Models\Stand;
 use Illuminate\Contracts\View\View;
@@ -28,7 +29,8 @@ class DasboardController extends Controller
         if($stand->proprietaire_id == auth()->user()->id)
            {
                 $produits = Produit::all()->where("stand_id",$idstand);
-                return View ('stand.standdetail',["stand"=>$stand,"produits"=>$produits]); 
+                $commandes = Commande::all()->where("stand_id",$idstand);
+                return View ('stand.standdetail',["stand"=>$stand,"produits"=>$produits,"commandes"=>$commandes]); 
            }
         else
         {

@@ -9,7 +9,9 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\StandController;
 use App\Http\Middleware\CheckIfActivated;
 use App\Http\Middleware\hasRoleAdmin;
+use App\Models\Produit;
 use App\Models\Stand;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 use function Laravel\Prompts\select;
@@ -31,8 +33,8 @@ Route::controller(LoginController::class)->group(function()
     Route::get('/logout','deconnexion')->name('deconnexion');
     Route::post('/login','connecter');
 });
-
-Route::middleware(['auth',CheckIfActivated::class])->group(function(){
+//,CheckIfActivated::class middleware pour rediriger l'utilisateur si son compte est en attente
+Route::middleware(['auth'])->group(function(){
 
     Route::controller(StandController::class)->group(function()
 {
@@ -75,3 +77,15 @@ Route::controller(AdminRouter::class)->prefix('admin/home')->group(
     }
 )->middleware(hasRoleAdmin::class);
 
+ Route::get('/',function()
+ {
+$stands =Stand::all();
+  return view("acceuil.accueilstand",["stands"=>$stands]);  
+ })->name("index");
+
+ Route::get('/Stand/{id}/produits', function ($id) {
+    $stand =Stand::findOrFail($id);
+    $produits = Produit::all()->where("stand_id",$id);
+    $proprietaire = User::findOrFail($stand->proprietaire_id);
+    return view("acceuil.produitstand",["stand"=>$stand,"produits"=>$produits,"proprietaire"=>$proprietaire]);
+})->name("voirStand");
