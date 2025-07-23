@@ -43,3 +43,9 @@
         @endforeach
 
 @endsection
+
+@section('script')
+    <script>
+        document.querySelector('.wait').classList.add('card', 'box-s')
+    </script>
+@endsection

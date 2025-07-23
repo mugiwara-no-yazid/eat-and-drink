@@ -45,6 +45,8 @@
 }
 .approved, .commands{
     width: 100%;
+    margin: 20px 0;
+    box-shadow: 0 0 1px 0 currentColor;
 }
 .column{
     flex-direction: column;
@@ -66,9 +68,11 @@
     color: gray;
 }
 .nav2{
-    width: calc(100% - 40px);
+    width: 100%;
     margin: 20px 0;
     padding: 5px;
+    box-shadow: 0 0 1px 0 currentColor;
+    border-radius: 5px;
 }
 .nav2 svg{
     transform: scale(0.8) translateY(5px);

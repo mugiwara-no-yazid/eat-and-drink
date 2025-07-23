@@ -72,7 +72,7 @@ Route::controller(AdminRouter::class)->prefix('admin/home')->group(
             $waiting=Stand::where('status', '=', 'pending')->with('user')->get();
             $stats=[
                 'accepted'=>count(Stand::where('status','=', 'accepted')->get()),
-                'pending'=>count(Stand::where('status','=', 'pending')->get()),
+                'pending'=>count($waiting),
                 'commands'=>count(Commande::all())
             ];
             return view('admin.includes.waitingList')->with('waiting', $waiting)->with('stats', $stats);
@@ -81,8 +81,9 @@ Route::controller(AdminRouter::class)->prefix('admin/home')->group(
         Route::get('/standApproved', function(){
             $approved=Stand::where('status', '=', 'accepted')->with('products')->get();
             $stats=[
-                'accepted'=>count(Stand::where('status','=', 'accepted')->get()),
-                'pending'=>count(Stand::where('status','=', 'pending')->get())
+                'accepted'=>count($approved),
+                'pending'=>count(Stand::where('status','=', 'pending')->get()),
+                'commands'=>count(Commande::all())
             ];
             return view('admin.includes.approvedStand')->with('approved', $approved)->with('stats', $stats);
         })->name('standApproved');

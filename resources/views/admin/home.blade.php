@@ -32,15 +32,17 @@
             </div>
 
             <nav class="flex nav2">  
-                    <a class=" text-c block flex box-s" href="{{ route('waitingList')}}"> <i data-lucide="users"></i> Demandes</a>
-                    <a class=" text-c flex block" href="{{ route('standApproved')}}" > <i data-lucide="users"></i> Stands approuvés</a>
-                    <a class=" text-c flex block" href=""> <i data-lucide="users"></i> Commandes</a>
+                    <a class=" text-c block flex wait" href="{{ route('waitingList')}}"> <i data-lucide="users"></i> Demandes</a>
+                    <a class=" text-c flex block approve" href="{{ route('standApproved')}}" > <i data-lucide="users"></i> Stands approuvés</a>
+                    <a class=" text-c flex block command" href=""> <i data-lucide="users"></i> Commandes</a>
             </nav>
         </section>
        
         <section class="main-section">
             @yield('content')
         </section>
+
+        @yield('script')
     </main>
 </body>
 </html>
