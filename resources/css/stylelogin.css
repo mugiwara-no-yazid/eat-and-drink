@@ -4,11 +4,17 @@
       box-sizing: border-box;
     }
 
+    :root{
+      --main-color:#ff7a00;
+    }
+
     body {
       font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
       background-color: #fff8f2;
       color: #333;
       padding-top: 0; /* Pas de padding supplémentaire car géré par le header */
+      height: 100vh;
+      width: 100vw;
     }
 
     .stand button{
@@ -276,6 +282,70 @@
       left: 0;
       color: #ff7b00;
       font-weight: bold;
+    }
+
+    .card{
+      width: 35%;
+      padding: 10px 15px;
+      background-color: white;
+    }
+
+    .admin-login{
+      margin: auto auto;
+    }
+
+    .flex{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .admin-login input{
+      width: 100%;
+      padding: 10px;
+      margin: 10px auto;
+      outline: none;
+      font-size: 1.1em;
+      border: solid 0.5px gray;
+      transition: 0.5s;
+      border-radius: 5px;
+    }
+
+    .admin-login input:focus{
+      box-shadow: 0 0 3px 0 #464646c3;
+      border-color: var(--main-color)
+    }
+
+    .admin-login button{
+      appearance: none;
+      width: 30%;
+      margin: 10px auto;
+      display: block;
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.61);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1em;
+      color: white;
+      background: var(--main-color);
+    }
+
+    .cursp{
+      cursor: pointer;
+    }
+
+    .align-c{
+      align-items: center;
+    }
+
+    .justify-c{
+      justify-content: center;
+    }
+
+    .rounded{
+      border-radius: 10px;
     }
 
     @media (max-width: 768px) {

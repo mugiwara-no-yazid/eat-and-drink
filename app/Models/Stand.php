@@ -12,4 +12,12 @@ class Stand extends Model
         'description',
         'logo',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class,'proprietaire_id');
+    }
+
+    public function products(){
+        return $this->hasMany(Produit::class);
+    }
 }

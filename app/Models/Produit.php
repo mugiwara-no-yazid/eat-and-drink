@@ -13,4 +13,8 @@ class Produit extends Model
         'prix',
         'image_url',
     ];
+
+    public function stand(){
+        return $this->belongsTo(Stand::class);
+    }
 }
