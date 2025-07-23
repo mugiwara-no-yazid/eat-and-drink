@@ -49,3 +49,22 @@ Route::controller(ProduitsController::class)->group( function()
 });
 
 });
+
+
+Route::get('/', function () {
+    return view("acceuil.accueilstand");
+});
+
+Route::get('/', function () {
+    return view("acceuil.produitstand");
+});
+
+
+Route::get('/stands', [StandController::class, 'index'])->name('stands.index');
+Route::get('/stands/{stand}', [StandController::class, 'voir'])->name('stands.voir');
+
+
+use App\Http\Controllers\PanierController;
+
+Route::post('/panier/ajouter/{produit}', [PanierController::class, 'ajouter'])->name('panier.ajouter');
+Route::get('/panier', [PanierController::class, 'voir'])->name('panier.voir');

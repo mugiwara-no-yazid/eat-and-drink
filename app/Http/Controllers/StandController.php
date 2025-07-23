@@ -36,3 +36,22 @@ class StandController extends Controller
         return redirect()->route("dashboard");
     }
 }
+
+
+
+class StandController extends Controller
+{
+    // Affiche tous les stands
+    public function index()
+    {
+        $stands = Stand::all();
+        return view('accueilstand', compact('stands'));
+    }
+
+    // Affiche les produits du stand sélectionné
+    public function voir(Stand $stand)
+    {
+        $produits = $stand->produits;
+        return view('produitsstand', compact('stand', 'produits'));
+    }
+}
