@@ -4,7 +4,8 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "browse": "browser-sync start --proxy localhost:8000 --files **/"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
@@ -13,5 +14,9 @@
         "laravel-vite-plugin": "^1.2.0",
         "tailwindcss": "^4.0.0",
         "vite": "^6.2.4"
+    },
+    "dependencies": {
+        "browser-sync": "^3.0.4",
+        "lucide": "^0.525.0"
     }
 }

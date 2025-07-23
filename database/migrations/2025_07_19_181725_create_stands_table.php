@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->foreignId('proprietaire_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
+            $table->enum('status', ['pending', 'accepted', 'rejected']);
         });
         
     }

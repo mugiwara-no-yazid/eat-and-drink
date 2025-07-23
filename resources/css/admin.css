@@ -1,0 +1,114 @@
+
+.admin{
+    overflow: auto;
+    height: max-content;
+    padding: 50px 70px;
+    font-family: Roboto, sans-serif;
+}
+.admin main{
+    margin: 80px auto;
+}
+.stats{
+    gap: 20px;
+    padding: 0 ;
+    margin: 30px 0;
+}
+.stats div{
+    gap:20px;
+    border-radius: 10px;
+    box-shadow: 0 0 3px 0 currentColor;
+    margin: 0;
+    height: 90px;
+}
+.stats p{
+    color: gray;
+}
+.stats svg{
+    stroke: var(--main-color);
+}
+.block{
+    display: block;
+}
+.bet{
+    justify-content: flex-between;
+}
+.stand-wait{
+    width: 100%;
+    margin: 20px auto;
+    border-radius: 10px;
+    padding: 20px 25px;
+    box-shadow: 0 0 1px 0 currentColor;
+}
+.box-s{
+    box-shadow: 0 0 1px 0 currentColor;
+}
+.approved, .commands{
+    width: 100%;
+}
+.column{
+    flex-direction: column;
+}
+.nav2 a{
+    padding: 2px 2px 5px;
+    border-radius: 5px;
+    display: block;
+    width: 33%;
+    color: gray;
+}
+.nav2{
+    width: calc(100% - 40px);
+    margin: 20px 0;
+    padding: 5px;
+}
+.nav2 svg{
+    transform: scale(0.8) translateY(5px);
+}
+
+.flag{
+    padding: 1px 10px; 
+    transform: scale(0.8); 
+    border-radius: 20px; 
+    border: solid 0.5px gray; 
+    background: rgba(24, 23, 23, 0.23);
+}
+.description{
+    margin: 10px;
+}
+.bord-10{
+    border-radius: 10px;
+}
+.bord-5{
+    border-radius: 5px;
+}
+.bet{
+    justify-content: space-between;
+}
+
+.stand-wait button{
+    width: 50%;
+    border-radius: 10px;
+    padding: 10px; 
+}
+
+.title{
+    margin: 20px 0;
+}
+
+.admin button{
+    border: none;
+    outline: none;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+    text-align: center;
+}
+.text-c{
+    text-align: center;
+}
+
+.button{
+    color: white; 
+    font-weight: 600; 
+}

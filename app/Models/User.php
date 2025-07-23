@@ -46,4 +46,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function stand(){
+        return $this->hasMany(Stand::class);
+    }
 }

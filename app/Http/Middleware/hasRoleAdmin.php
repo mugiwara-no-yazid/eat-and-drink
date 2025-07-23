@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckIfActivated
+class hasRoleAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,8 @@ class CheckIfActivated
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-        $user = FacadesAuth::user();
-        if ($user && $user->statut !== 'activer') {
-            return redirect()->route('inactif')->with('error', 'Votre compte n\'est pas encore activé.');
+        if(FacadesAuth::check() || FacadesAuth::user()->role !== 'admin'){
+            abort(403, 'Acces interdit.');
         }
         return $next($request);
     }
