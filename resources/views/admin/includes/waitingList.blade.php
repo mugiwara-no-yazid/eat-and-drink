@@ -4,7 +4,13 @@
     <h2 class="title">Demandes en attentes</h2>
 
     @if(!$waiting || sizeof($waiting) === 0)
-        <div>Aucune demande</div>
+        <div class="bord-10 card empty flex justify-c w-100 box-s text-c" style="padding:50px;">
+            <div>
+                <div class="flex justify-c p-10 m-10" style="margin:20px auto;"><i data-lucide="users" transform="scale(2)"></i></div>
+                <strong>Aucune demande en attente</strong>
+                <p class="m-10">Toutes les demandes ont été traitées.</p>
+            </div>
+        </div>
     @endif
 
 

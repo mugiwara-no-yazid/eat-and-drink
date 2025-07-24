@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function stand(){
         return $this->hasMany(Stand::class);
     }
+
+    public function commands(){
+        return $this->hasMany(Commande::class);
+    }
 }

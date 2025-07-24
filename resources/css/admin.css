@@ -2,12 +2,19 @@
 .admin{
     overflow: auto;
     height: max-content;
-    padding: 50px 70px;
+    padding: 50px 70px 0;
     font-family: Roboto, sans-serif;
     overflow-x: hidden;
 }
 .admin main{
     margin: 80px auto;
+}
+.standard-hover{
+    cursor: pointer;
+    transition: 0.3s;
+}
+.standard-hover:hover{
+    background-color: rgba(68, 170, 83, 0.46);
 }
 .stats{
     gap: 20px;
@@ -47,6 +54,36 @@
     width: 100%;
     margin: 20px 0;
     box-shadow: 0 0 1px 0 currentColor;
+}
+.approved{
+    padding: 20px;
+}
+.w-mc{
+    width: max-content;
+}
+.w-100{
+    width: 100%;
+}
+.p-10{
+    padding: 10px;
+}
+.px-10{
+    padding-inline: 10px;
+}
+.py-10{
+    padding-block: 10px;
+}
+.p-5{
+    padding: 5px;
+}
+.m-10{
+    margin: 10px auto;
+}
+.just-start{
+    justify-content: start;
+}
+.just-self-start{
+    justify-self: start;
 }
 .column{
     flex-direction: column;

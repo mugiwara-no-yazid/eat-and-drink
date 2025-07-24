@@ -1,24 +1,35 @@
 @extends('admin.home')
 
 @section('content')
-    <?php $commands=[['stand_name' => 'La boulangerie', 'logo'=>0]] ?>
+<h2 class="title">Liste des commandes</h2>
+
+@if(!$commands || count($commands) === 0)
+    <div class="bord-10 card empty flex justify-c w-100 box-s text-c" style="padding:50px;">
+        <div>
+            <div class="flex justify-c p-10 m-10" style="margin:20px auto;"><i data-lucide="shopping-cart" transform="scale(2)"></i></div>
+            <strong>Aucune commande n'a encore été effectuée.</strong>
+        </div>
+    </div>
+@endif
     @foreach($commands as $elem)
-            
-            <div class="card approved bord-10 flex bet">
-                <div class="flex" style="gap:15px;">
-                    {!! ($elem['logo'] && $elem['logo'] !== 0) 
-        ? "<img src='{$elem['logo']}' />" 
-        : '<div style="border-radius: 100%; padding: 10px; border: solid 0.1px gray;">' . strtoupper($elem['stand_name'][0] . $elem['stand_name'][1]) . '</div>' 
-    !!} 
-                        <div> 
-                            <h3>{{ $elem['stand_name'] }}</h3>
-                            <p class="flex" style="margin-top: 5px;"> <span class="flag"> {{ $elem['category'] ?? 'Rien'}} </span> <span> {{ $stand['products'] ?? 0 }} produits </span></p>
-                        </div>
+        <div class="commands card bord-10" style="padding: 20px;">
+            <p style="font-size:1.2em;">Commande #{{$elem['id']}}</p>
+            <div class="flex bet  py-10">
+                <div class="flex column justify-c" style="color:#716d54;">
+                    <p>Client: {{ $elem['user']['name'] }} </p>
+                    <p>Stand: {{ $elem['stand']['name_stand'] }} </p>
                 </div>
-                <div class="column flex">
-                    <p class="flag" style="background: rgba(102, 202, 69, 0.42);">&check; Approuvé</p>
-                    <p style="text-align: center;">{{ $elem['updated_at'] ?? 'Today' }}</p>
+
+                <div class="flex column">
+                    <p class="flag w-mc">{{$elem['statut']}}</p>
+                    <p style="font-size:0.9em; color: #716d54;">{{ $elem['updated_at'] }}</p>
                 </div>
-            </div>   
+            </div>
+        </div>
     @endforeach
+@endsection
+@section('script')
+    <script>
+        document.querySelector('.command').classList.add('card')
+    </script>
 @endsection

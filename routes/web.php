@@ -63,31 +63,29 @@ Route::controller(AdminLogin::class)->group(
     function(){
         Route::get('/admin/auth/2468Laravel', 'auth');
         Route::post('/admin/auth/2468Laravel', 'verifyEntries');
+        Route::get('/admin/logout', 'logout')->name('ad-logout');
     }
 )->middleware(hasRoleAdmin::class);
 
 Route::controller(AdminRouter::class)->prefix('admin/home')->group(
     function(){
         Route::get('/waitingList', function(){
-            $waiting=Stand::where('status', '=', 'pending')->with('user')->get();
-            $stats=[
-                'accepted'=>count(Stand::where('status','=', 'accepted')->get()),
-                'pending'=>count($waiting),
-                'commands'=>count(Commande::all())
-            ];
-            return view('admin.includes.waitingList')->with('waiting', $waiting)->with('stats', $stats);
+            $data=AdminRouter::getDashInfos('pending');
+            return view('admin.includes.waitingList')->with('waiting', $data['needle'])->with('stats', $data['stats']);
         })->name('waitingList');
 
         Route::get('/standApproved', function(){
-            $approved=Stand::where('status', '=', 'accepted')->with('products')->get();
-            $stats=[
-                'accepted'=>count($approved),
-                'pending'=>count(Stand::where('status','=', 'pending')->get()),
-                'commands'=>count(Commande::all())
-            ];
-            return view('admin.includes.approvedStand')->with('approved', $approved)->with('stats', $stats);
+            $data=AdminRouter::getDashInfos('accepted');
+            return view('admin.includes.approvedStand')->with('approved', $data['needle'])->with('stats', $data['stats']);
         })->name('standApproved');
 
+        Route::get('/commands', function(){
+            $commands=Commande::with('stand')->with('user')->get();
+            $stats=AdminRouter::getDashInfos();
+            return view('admin.includes.commands')->with('commands', $commands)->with('stats', $stats);
+        })->name('commands');
+
+        
 
         Route::post('/standAccept/{id}', [StandController::class, 'manageStand'])->name('stand-approve');
         Route::post('/standReject/{id}', [StandController::class, 'manageStand'])->name('stand-reject');

@@ -51,4 +51,5 @@ class StandController extends Controller
             return view('admin.includes.waitingList')->with('waiting', $waiting)->with('stats', $stats);
     }
 
+
 }

@@ -6,6 +6,7 @@ use App\Http\Requests\LoginRequest;
 use App\Models\Stand;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminLogin extends Controller
@@ -23,11 +24,15 @@ class AdminLogin extends Controller
                 abort(403, "Accès interdit");
             }
 
-            $stats=[
-                'accepted'=>count(Stand::where('status','=', 'accepted')->get()),
-                'pending'=>count(Stand::where('status','=', 'pending')->get())
-            ];
-            return view('admin.includes.waitingList')->with('stats',$stats);
+            $data=AdminRouter::getDashInfos('pending');
+            return view('admin.includes.waitingList')->with('waiting', $data['needle'])->with('stats', $data['stats']);
+        }else{
+            abort (403,'Forbidden');
         }
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
     }
 }

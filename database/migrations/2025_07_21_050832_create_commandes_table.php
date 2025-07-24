@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('commandes', function (Blueprint $table) {
             $table->id(); 
             $table->unsignedBigInteger('stand_id'); 
+            $table->unsignedBigInteger('user_id');
             $table->text('details_commande'); 
             $table->dateTime('date_commande');
+            $table->enum('statut',['pending', 'done']);
             $table->timestamps();
             $table->foreign('stand_id')->references('id')->on('stands')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
